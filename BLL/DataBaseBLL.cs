@@ -14,12 +14,17 @@ namespace BLL
         DataBaseDAL _dal = new DataBaseDAL();
         public int? CheckCredential(CredentialDTO credentialDTO)
         {
-            var credential = MappingCredential.MappingDTOtoModel(credentialDTO);
+            var credential = MappingCredential.MappingDTOtoDM(credentialDTO);
             return _dal.GetUserIdByCredential(credential);
         }
         public bool IsEmailAddressFree(string email)
         {
             return _dal.IsEmailAddressFree(email);
+        }
+        public bool AddCredential(CredentialDTO credentialDTO)
+        {
+            var credential = MappingCredential.MappingDTOtoDM(credentialDTO);
+            return _dal.AddCredential(credential);
         }
     }
 }

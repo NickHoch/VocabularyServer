@@ -15,7 +15,7 @@ namespace WCF
         int? CheckCredential(CredentialDC credentialDC);
         [OperationContract]
         bool IsEmailAddressFree(string email);
-        //[OperationContract]
-        //bool AddCredential(CredentialDC credentialDC);
+        [OperationContract]
+        bool AddCredential(CredentialDC credentialDC);
     }
 }

@@ -23,5 +23,13 @@ namespace DAL
         {
             return _ctx.Credentials.Any(x => x.Email == email);
         }
+        public bool AddCredential(Credential credential)
+        {
+            int countBefore = _ctx.Credentials.Count();
+            _ctx.Credentials.Add(credential);
+            _ctx.SaveChanges();
+            int countAfter = _ctx.Credentials.Count();
+            return countAfter > countBefore;
+        }
     }
 }

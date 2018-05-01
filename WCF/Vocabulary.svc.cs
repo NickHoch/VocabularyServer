@@ -13,7 +13,6 @@ namespace WCF
     public class Vocabulary : IVocabulary
     {
         private DataBaseBLL _bll = new DataBaseBLL();
-
         public int? CheckCredential(CredentialDC credentialDC)
         {
             try
@@ -26,12 +25,23 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
-
         public bool IsEmailAddressFree(string email)
         {
             try
             {
                 return _bll.IsEmailAddressFree(email);
+            }
+            catch(Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public bool AddCredential(CredentialDC credentialDC)
+        {
+            try
+            {
+                var credentialDTO = MappingCredential.MappingDCtoDTO(credentialDC);
+                return _bll.AddCredential(credentialDTO);
             }
             catch(Exception ex)
             {

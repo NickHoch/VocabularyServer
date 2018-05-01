@@ -11,12 +11,12 @@ namespace BLL.Mapping
 {
     public static class MappingCredential
     {
-        public static Credential MappingDTOtoModel(CredentialDTO credentialDTO)
+        public static Credential MappingDTOtoDM(CredentialDTO credentialDTO)
         {
-            MapperConfiguration configDTOtoModel = new MapperConfiguration(cfg => {
+            MapperConfiguration configDTOtoDM = new MapperConfiguration(cfg => {
                 cfg.CreateMap<CredentialDTO, Credential>();
             });
-            IMapper iMapper = configDTOtoModel.CreateMapper();
+            IMapper iMapper = configDTOtoDM.CreateMapper();
             return iMapper.Map<CredentialDTO, Credential>(credentialDTO);
         }
     }
