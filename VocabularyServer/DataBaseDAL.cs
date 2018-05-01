@@ -9,9 +9,10 @@ namespace DAL
     public class DataBaseDAL
     {
         public readonly VocabularyModel _ctx = new VocabularyModel();
-        public int? GetUserIdByCredential(string login, string password)
+        public int? GetUserIdByCredential(Credential credential)
         {
-            var cred = _ctx.Credentials.Where(x => x.Email == login && x.Password == password).SingleOrDefault();
+            var cred = _ctx.Credentials.Where(x => x.Email == credential.Email && x.Password == credential.Password)
+                                       .SingleOrDefault();
             if(cred != null)
             {
                 return cred.Id;

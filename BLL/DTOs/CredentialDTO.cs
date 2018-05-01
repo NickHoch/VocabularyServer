@@ -10,9 +10,7 @@ namespace BLL.DTOs
     public class CredentialDTO
     {
         public int Id { get; set; }
-        [StringLength(50)]
         public string Email { get; set; }
-        [Required, StringLength(20)]
         public string Password { get; set; }
     }
 }

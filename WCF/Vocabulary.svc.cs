@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using BLL;
+using WCF.DCs;
+using WCF.Mapping;
 
 namespace WCF
 {
@@ -12,11 +14,12 @@ namespace WCF
     {
         private DataBaseBLL _bll = new DataBaseBLL();
 
-        public int? CheckCredential(string login, string password)
+        public int? CheckCredential(CredentialDC credentialDC)
         {
             try
             {
-                return _bll.CheckCredential(login, password);
+                var credentialDTO = MappingCredential.MappingDCtoDTO(credentialDC);
+                return _bll.CheckCredential(credentialDTO);
             }
             catch(Exception ex)
             {

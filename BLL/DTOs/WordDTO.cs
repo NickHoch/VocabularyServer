@@ -10,11 +10,8 @@ namespace BLL.DTOs
     public class WordDTO
     {
         public int Id { get; set; }
-        [Required, StringLength(20, MinimumLength = 1)]
         public string WordEng { get; set; }
-        [Required, StringLength(20, MinimumLength = 1)]
         public string Transcription { get; set; }
-        [Required, StringLength(20, MinimumLength = 1)]
         public string Translation { get; set; }
         public byte[] Sound { get; set; }
         public byte[] Image { get; set; }

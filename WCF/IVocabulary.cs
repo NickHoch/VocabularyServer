@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using WCF.DCs;
 
 namespace WCF
 {
@@ -11,8 +12,10 @@ namespace WCF
     public interface IVocabulary
     {
         [OperationContract]
-        int? CheckCredential(string login, string password);
+        int? CheckCredential(CredentialDC credentialDC);
         [OperationContract]
         bool IsEmailAddressFree(string email);
+        //[OperationContract]
+        //bool AddCredential(CredentialDC credentialDC);
     }
 }

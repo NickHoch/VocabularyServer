@@ -11,9 +11,6 @@ namespace DAL
         {
             string projectPath =
             Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-            //string currentDir = Environment.CurrentDirectory;
-            //DirectoryInfo directory = new DirectoryInfo(
-            //Path.GetFullPath(Path.Combine(currentDir, @"..\..\" + localPath)));
             var path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.RelativeSearchPath, @"..\..\VocabularyServer\bin\Debug"));
             Credential cred1 = new Credential
             {
