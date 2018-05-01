@@ -14,12 +14,26 @@ namespace WCF
 
         public int? CheckCredential(string login, string password)
         {
-            return _bll.CheckCredential(login, password);
+            try
+            {
+                return _bll.CheckCredential(login, password);
+            }
+            catch(Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
         }
 
         public bool IsEmailAddressFree(string email)
         {
-            return _bll.IsEmailAddressFree(email);
+            try
+            {
+                return _bll.IsEmailAddressFree(email);
+            }
+            catch(Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
         }
     }
 }
