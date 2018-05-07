@@ -51,6 +51,7 @@
     <Compile Include="DTOs\DictionaryDTO.cs" />
     <Compile Include="DTOs\WordDTO.cs" />
     <Compile Include="Mapping\MappingCredential.cs" />
+    <Compile Include="Mapping\MappingDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

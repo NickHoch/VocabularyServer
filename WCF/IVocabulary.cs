@@ -12,10 +12,12 @@ namespace WCF
     public interface IVocabulary
     {
         [OperationContract]
-        int? CheckCredential(CredentialDC credentialDC);
+        int? GetUserIdByCredential(CredentialDC credentialDC);
         [OperationContract]
         bool IsEmailAddressFree(string email);
         [OperationContract]
         bool AddCredential(CredentialDC credentialDC);
+        [OperationContract]
+        bool AddDictionary(DictionaryDC dictionaryDC);
     }
 }

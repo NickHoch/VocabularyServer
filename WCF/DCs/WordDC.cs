@@ -1,22 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Web;
 
-namespace BLL.DTOs
+namespace WCF.DCs
 {
-    public class WordDTO
+    [DataContract]
+    public class WordDC
     {
-        public int Id { get; set; }
+        [DataMember]
         public string WordEng { get; set; }
+        [DataMember]
         public string Transcription { get; set; }
+        [DataMember]
         public string Translation { get; set; }
+        [DataMember]
         public byte[] Sound { get; set; }
+        [DataMember]
         public byte[] Image { get; set; }
+        [DataMember]
         public ICollection<Boolean> IsLearned;
+        [DataMember]
         public bool IsLearnedWord { get; set; } = false;
-        public DictionaryDTO Dictionary { get; set; }
+        [DataMember]
+        public DictionaryDC Dictionary { get; set; }
     }
 }

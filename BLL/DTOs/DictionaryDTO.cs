@@ -11,6 +11,6 @@ namespace BLL.DTOs
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual CredentialDTO Credential { get; set; }
+        public CredentialDTO Credential { get; set; }
     }
 }

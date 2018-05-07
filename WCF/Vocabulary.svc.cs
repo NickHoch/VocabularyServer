@@ -13,12 +13,12 @@ namespace WCF
     public class Vocabulary : IVocabulary
     {
         private DataBaseBLL _bll = new DataBaseBLL();
-        public int? CheckCredential(CredentialDC credentialDC)
+        public int? GetUserIdByCredential(CredentialDC credentialDC)
         {
             try
             {
                 var credentialDTO = MappingCredential.MappingDCtoDTO(credentialDC);
-                return _bll.CheckCredential(credentialDTO);
+                return _bll.GetUserIdByCredential(credentialDTO);
             }
             catch(Exception ex)
             {
@@ -42,6 +42,18 @@ namespace WCF
             {
                 var credentialDTO = MappingCredential.MappingDCtoDTO(credentialDC);
                 return _bll.AddCredential(credentialDTO);
+            }
+            catch(Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public bool AddDictionary(DictionaryDC dictionaryDC)
+        {
+            try
+            {
+                var dictionaryDTO = MappingDictionary.MappingDCtoDTO(dictionaryDC);
+                return _bll.AddDictionary(dictionaryDTO);
             }
             catch(Exception ex)
             {

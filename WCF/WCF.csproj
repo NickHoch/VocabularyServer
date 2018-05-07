@@ -78,8 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DCs\CredentialDC.cs" />
+    <Compile Include="DCs\DictionaryDC.cs" />
+    <Compile Include="DCs\WordDC.cs" />
     <Compile Include="IVocabulary.cs" />
     <Compile Include="Mapping\MappingCredential.cs" />
+    <Compile Include="Mapping\MappingDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vocabulary.svc.cs">
       <DependentUpon>Vocabulary.svc</DependentUpon>

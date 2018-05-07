@@ -12,7 +12,7 @@ namespace BLL
     public class DataBaseBLL
     {
         DataBaseDAL _dal = new DataBaseDAL();
-        public int? CheckCredential(CredentialDTO credentialDTO)
+        public int? GetUserIdByCredential(CredentialDTO credentialDTO)
         {
             var credential = MappingCredential.MappingDTOtoDM(credentialDTO);
             return _dal.GetUserIdByCredential(credential);
@@ -25,6 +25,11 @@ namespace BLL
         {
             var credential = MappingCredential.MappingDTOtoDM(credentialDTO);
             return _dal.AddCredential(credential);
+        }
+        public bool AddDictionary(DictionaryDTO dictionaryDTO)
+        {
+            var dictionary = MappingDictionary.MappingDTOtoDM(dictionaryDTO);
+            return _dal.AddDictionary(dictionary);
         }
     }
 }

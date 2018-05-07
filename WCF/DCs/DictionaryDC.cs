@@ -7,13 +7,13 @@ using System.Web;
 namespace WCF.DCs
 {
     [DataContract]
-    public class CredentialDC
+    public class DictionaryDC
     {
         [DataMember]
-        public string Email { get; set; }
+        public string Name { get; set; }
         [DataMember]
-        public string Password { get; set; }
+        public CredentialDC Credential { get; set; }
         [DataMember]
-        public ICollection<DictionaryDC> Dictionaries { get; set; }
+        public ICollection<WordDC> Words { get; set; }
     }
 }

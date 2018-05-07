@@ -13,7 +13,8 @@ namespace BLL.Mapping
     {
         public static Credential MappingDTOtoDM(CredentialDTO credentialDTO)
         {
-            MapperConfiguration configDTOtoDM = new MapperConfiguration(cfg => {
+            MapperConfiguration configDTOtoDM = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<CredentialDTO, Credential>();
             });
             IMapper iMapper = configDTOtoDM.CreateMapper();

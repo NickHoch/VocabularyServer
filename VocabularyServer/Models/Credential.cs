@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL
 {
@@ -9,5 +10,6 @@ namespace DAL
         public string Email { get; set; }
         [Required, StringLength(20)]
         public string Password { get; set; }
+        public virtual ICollection<Dictionary> Dictionaries { get; set; }
     }
 }
