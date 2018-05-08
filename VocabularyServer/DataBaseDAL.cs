@@ -24,7 +24,7 @@ namespace DAL
         {
             return _ctx.Credentials.Any(x => x.Email == email);
         }
-        public bool AddCredential(Credential credential)
+        public bool AddCredential(Credential credential) ///////////////////////////////// xml serialize
         {
             string projectPath =
                 Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
@@ -34,7 +34,7 @@ namespace DAL
             _ctx.Dictionaries.Add(new Dictionary
             {
                 Name = "Animals",
-                Credential = credential,
+                Credential = credential
             });
             _ctx.SaveChanges();
             var dictionary = _ctx.Dictionaries.Where(x => x.Name == "Animals" && x.Credential.Id == credential.Id).SingleOrDefault();

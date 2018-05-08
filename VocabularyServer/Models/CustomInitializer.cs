@@ -106,7 +106,7 @@ namespace DAL
                     Transcription = "|fɑːks|",
                     Translation = "лисиця",
                     Dictionary = dict1,
-                    Image = File.ReadAllBytes($"{path}\\Image\\fox.png"),
+                    Image = File.ReadAllBytes($@"{path}\Image\fox.png"),   //////////////////////////////////////
                     Sound = File.ReadAllBytes($"{path}\\Sound\\fox.mp3")
                 },
                 new Word
@@ -120,7 +120,6 @@ namespace DAL
                 }
             });
             _ctx.SaveChanges();
-            base.Seed(_ctx);
         }
     }
 }
