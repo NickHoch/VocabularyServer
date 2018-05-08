@@ -16,7 +16,7 @@ namespace WCF
         [OperationContract]
         bool IsEmailAddressFree(string email);
         [OperationContract]
-        bool AddCredential(CredentialDC credentialDC);
+        bool AddUser(CredentialDC credentialDC);
         [OperationContract]
         bool AddDictionary(DictionaryDC dictionaryDC);
     }

@@ -21,10 +21,25 @@ namespace BLL
         {
             return _dal.IsEmailAddressFree(email);
         }
-        public bool AddCredential(CredentialDTO credentialDTO)
+        public bool AddUser(CredentialDTO credentialDTO)
         {
+            bool resAddUser = false;
             var credential = MappingCredential.MappingDTOtoDM(credentialDTO);
-            return _dal.AddCredential(credential);
+            var resAddCred = _dal.AddCredential(credential);
+            if(resAddCred)
+            {
+                Dictionary dictionary = new Dictionary
+                {
+                    Name = "Animals",
+                    Credential = credential
+                };
+                var resAddDict = _dal.AddDictionary(dictionary);
+                if(resAddDict)
+                {
+                    resAddUser = _dal.StartInitializeDctionary(dictionary);
+                }
+            }
+            return resAddUser;
         }
         public bool AddDictionary(DictionaryDTO dictionaryDTO)
         {

@@ -36,12 +36,12 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
-        public bool AddCredential(CredentialDC credentialDC)
+        public bool AddUser(CredentialDC credentialDC)
         {
             try
             {
                 var credentialDTO = MappingCredential.MappingDCtoDTO(credentialDC);
-                return _bll.AddCredential(credentialDTO);
+                return _bll.AddUser(credentialDTO);
             }
             catch(Exception ex)
             {
