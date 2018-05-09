@@ -8,7 +8,7 @@ using WCF.DCs;
 
 namespace WCF.Mapping
 {
-    public static class MappingDictionary
+    public class MappingDictionary
     {
         public static DictionaryDTO MappingDCtoDTO(DictionaryDC dictionaryDC)
         {

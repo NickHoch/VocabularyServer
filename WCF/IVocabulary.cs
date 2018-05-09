@@ -19,5 +19,9 @@ namespace WCF
         bool AddUser(CredentialDC credentialDC);
         [OperationContract]
         bool AddDictionary(DictionaryDC dictionaryDC);
+        [OperationContract]
+        ICollection<string> GetDictionariesNameByUserId(int userId);
+        [OperationContract]
+        ICollection<WordDC> GetNotLearnedWords(int quantityWords, string dictionaryName);
     }
 }

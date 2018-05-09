@@ -9,7 +9,7 @@ using DAL;
 
 namespace BLL.Mapping
 {
-    public static class MappingCredential
+    public class MappingCredential
     {
         public static Credential MappingDTOtoDM(CredentialDTO credentialDTO)
         {

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace DAL.Utils
 {
-    public static class Helper
+    public class Helper
     {
         public static string GetPathToBaseDirectory()
         {

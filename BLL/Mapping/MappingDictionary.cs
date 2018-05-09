@@ -4,7 +4,7 @@ using DAL;
 
 namespace BLL.Mapping
 {
-    public static class MappingDictionary
+    public class MappingDictionary
     {
         public static Dictionary MappingDTOtoDM(DictionaryDTO dictionaryDTO)
         {

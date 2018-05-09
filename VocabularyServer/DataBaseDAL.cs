@@ -42,6 +42,19 @@ namespace DAL
         //{
         //    return _ctx.Dictionaries.Where(x => x.Credential.Id == dictionaryId).SingleOrDefault();
         //}
+        public List<string> GetDictionariesNameByUserId(int userId)
+        {
+            return _ctx.Dictionaries.Where(x => x.Credential.Id == userId)
+                                    .Select(x => x.Name)
+                                    .ToList();
+        }
+        public List<Word> GetNotLearnedWords(int quantityWords, string dictionaryName)
+        {
+            return _ctx.Words.Where(x => x.Dictionary.Name == dictionaryName
+                                        && x.IsLearnedWord == false)
+                             .Take(quantityWords)
+                             .ToList();
+        }
         public bool StartInitializeDctionary(Dictionary dictionary)
         {
             string path = Helper.GetPathToBaseDirectory();

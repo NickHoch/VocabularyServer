@@ -15,7 +15,7 @@ namespace BLL.DTOs
         public string Translation { get; set; }
         public byte[] Sound { get; set; }
         public byte[] Image { get; set; }
-        public ICollection<Boolean> IsLearned;
+        public List<Boolean> IsLearned = new List<bool>();
         public bool IsLearnedWord { get; set; } = false;
         public DictionaryDTO Dictionary { get; set; }
     }

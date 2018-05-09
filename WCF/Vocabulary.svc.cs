@@ -60,5 +60,33 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
+        public ICollection<string> GetDictionariesNameByUserId(int userId)
+        {
+            try
+            {
+                return _bll.GetDictionariesNameByUserId(userId);
+            }
+            catch(Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public ICollection<WordDC> GetNotLearnedWords(int quantityWords, string dictionaryName)
+        {
+            //try
+            //{
+                var listWordDTO = _bll.GetNotLearnedWords(quantityWords, dictionaryName);
+                List<WordDC> listWordDC = new List<WordDC>();
+                foreach(var item in listWordDTO)
+                {
+                    listWordDC.Add(MappingWord.MappingDTOtoDC(item));
+                }
+                return listWordDC;
+            //}
+            //catch(Exception ex)
+            //{
+            //    throw new FaultException(ex.Message);
+            //}
+        }
     }
 }

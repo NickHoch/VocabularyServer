@@ -46,5 +46,19 @@ namespace BLL
             var dictionary = MappingDictionary.MappingDTOtoDM(dictionaryDTO);
             return _dal.AddDictionary(dictionary);
         }
+        public List<string> GetDictionariesNameByUserId(int userId)
+        {
+            return _dal.GetDictionariesNameByUserId(userId);
+        }
+        public List<WordDTO> GetNotLearnedWords(int quantityWords, string dictionaryName)
+        {
+            var listWords = _dal.GetNotLearnedWords(quantityWords, dictionaryName);
+            List<WordDTO> listWordsDTO = new List<WordDTO>();
+            foreach(var item in listWords)
+            {
+                listWordsDTO.Add(MappingWord.MappingDMtoDTO(item));
+            }
+            return listWordsDTO;
+        }
     }
 }

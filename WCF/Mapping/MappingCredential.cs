@@ -8,7 +8,7 @@ using BLL.DTOs;
 
 namespace WCF.Mapping
 {
-    public static class MappingCredential
+    public class MappingCredential
     {
         public static CredentialDTO MappingDCtoDTO(CredentialDC credentialDC)
         {
