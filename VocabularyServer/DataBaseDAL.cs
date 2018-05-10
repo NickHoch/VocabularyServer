@@ -55,6 +55,14 @@ namespace DAL
                              .Take(quantityWords)
                              .ToList();
         }
+        public void SetToWordsStatusAsLearned(int quantityWords, string dictionaryName)
+        {
+            _ctx.Words.Where(x => x.Dictionary.Name == dictionaryName
+                                        && x.IsLearnedWord == false)
+                      .Take(quantityWords)
+                      .ToList()
+                      .ForEach(x => x.IsLearnedWord = true);
+        }
         public bool StartInitializeDctionary(Dictionary dictionary)
         {
             string path = Helper.GetPathToBaseDirectory();

@@ -20,7 +20,7 @@ namespace WCF
                 var credentialDTO = MappingCredential.MappingDCtoDTO(credentialDC);
                 return _bll.GetUserIdByCredential(credentialDTO);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new FaultException(ex.Message);
             }
@@ -31,7 +31,7 @@ namespace WCF
             {
                 return _bll.IsEmailAddressFree(email);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new FaultException(ex.Message);
             }
@@ -43,7 +43,7 @@ namespace WCF
                 var credentialDTO = MappingCredential.MappingDCtoDTO(credentialDC);
                 return _bll.AddUser(credentialDTO);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new FaultException(ex.Message);
             }
@@ -55,7 +55,7 @@ namespace WCF
                 var dictionaryDTO = MappingDictionary.MappingDCtoDTO(dictionaryDC);
                 return _bll.AddDictionary(dictionaryDTO);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new FaultException(ex.Message);
             }
@@ -66,7 +66,7 @@ namespace WCF
             {
                 return _bll.GetDictionariesNameByUserId(userId);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new FaultException(ex.Message);
             }
@@ -82,6 +82,17 @@ namespace WCF
                     listWordDC.Add(MappingWord.MappingDTOtoDC(item));
                 }
                 return listWordDC;
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public void SetToWordsStatusAsLearned(int quantityWords, string dictionaryName)
+        {
+            try
+            {
+                _bll.SetToWordsStatusAsLearned(quantityWords, dictionaryName);
             }
             catch (Exception ex)
             {

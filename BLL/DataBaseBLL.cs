@@ -60,5 +60,9 @@ namespace BLL
             }
             return listWordsDTO;
         }
+        public void SetToWordsStatusAsLearned(int quantityWords, string dictionaryName)
+        {
+            _dal.SetToWordsStatusAsLearned(quantityWords, dictionaryName);
+        }
     }
 }

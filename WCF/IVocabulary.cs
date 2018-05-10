@@ -23,5 +23,7 @@ namespace WCF
         ICollection<string> GetDictionariesNameByUserId(int userId);
         [OperationContract]
         ICollection<WordDC> GetNotLearnedWords(int quantityWords, string dictionaryName);
+        [OperationContract]
+        void SetToWordsStatusAsLearned(int quantityWords, string dictionaryName);
     }
 }
