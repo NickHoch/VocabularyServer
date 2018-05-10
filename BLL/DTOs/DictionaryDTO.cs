@@ -12,5 +12,6 @@ namespace BLL.DTOs
         public int Id { get; set; }
         public string Name { get; set; }
         public CredentialDTO Credential { get; set; }
+        public List<WordDTO> Words { get; set; }
     }
 }

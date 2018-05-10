@@ -23,7 +23,7 @@ namespace WCF.DCs
         public ICollection<Boolean> IsLearned = new List<Boolean>();
         [DataMember]
         public bool IsLearnedWord { get; set; } = false;
-        //[DataMember]
-        //public DictionaryDC Dictionary { get; set; }
+        [DataMember]
+        public DictionaryDC Dictionary { get; set; }
     }
 }

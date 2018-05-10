@@ -73,20 +73,20 @@ namespace WCF
         }
         public ICollection<WordDC> GetNotLearnedWords(int quantityWords, string dictionaryName)
         {
-            //try
-            //{
+            try
+            {
                 var listWordDTO = _bll.GetNotLearnedWords(quantityWords, dictionaryName);
                 List<WordDC> listWordDC = new List<WordDC>();
-                foreach(var item in listWordDTO)
+                foreach (var item in listWordDTO)
                 {
                     listWordDC.Add(MappingWord.MappingDTOtoDC(item));
                 }
                 return listWordDC;
-            //}
-            //catch(Exception ex)
-            //{
-            //    throw new FaultException(ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
         }
     }
 }

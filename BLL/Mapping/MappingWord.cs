@@ -13,12 +13,20 @@ namespace BLL.Mapping
     {
         public static WordDTO MappingDMtoDTO(Word word)
         {
-            MapperConfiguration configDMtoDTO = new MapperConfiguration(cfg =>
+            //MapperConfiguration configDMtoDTO = new MapperConfiguration(cfg =>
+            //{
+            //    cfg.CreateMap<Word, WordDTO>();
+            //});
+            //IMapper iMapper = configDMtoDTO.CreateMapper();
+            //return iMapper.Map<Word, WordDTO>(word);
+            var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Word, WordDTO>();
+                cfg.CreateMap<Word, WordDTO>().MaxDepth(2);
+                cfg.CreateMap<Dictionary, DictionaryDTO>().MaxDepth(2);
             });
-            IMapper iMapper = configDMtoDTO.CreateMapper();
-            return iMapper.Map<Word, WordDTO>(word);
+            config.AssertConfigurationIsValid();
+            var mapper = config.CreateMapper();
+            return mapper.Map<Word, WordDTO>(word);
         }
     }
 }
