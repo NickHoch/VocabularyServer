@@ -13,7 +13,7 @@ namespace DAL
             string path = Helper.GetPathToBaseDirectory();
             Credential cred1 = new Credential
             {
-                Email = "nhy66@mail.ru",
+                Email = "nhy66@gmail.com",
                 Password = "5984ljkfh"
             };
             _ctx.Credentials.Add(cred1);
@@ -105,7 +105,7 @@ namespace DAL
                     Transcription = "|fɑːks|",
                     Translation = "лисиця",
                     Dictionary = dict1,
-                    Image = File.ReadAllBytes($@"{path}\Image\fox.png"),   //////////////////////////////////////
+                    Image = File.ReadAllBytes($@"{path}\Image\fox.png"),
                     Sound = File.ReadAllBytes($@"{path}\Sound\fox.mp3")
                 },
                 new Word

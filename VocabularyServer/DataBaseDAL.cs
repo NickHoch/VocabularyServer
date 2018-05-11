@@ -62,6 +62,7 @@ namespace DAL
                       .Take(quantityWords)
                       .ToList()
                       .ForEach(x => x.IsLearnedWord = true);
+            _ctx.SaveChanges();
         }
         public bool StartInitializeDctionary(Dictionary dictionary)
         {
