@@ -20,7 +20,15 @@ namespace WCF
         [OperationContract]
         bool AddDictionary(DictionaryDC dictionaryDC);
         [OperationContract]
+        bool AddWord(WordDC wordDC, int dictionaryId);
+        [OperationContract]
+        bool DeleteWord(int wordId);
+        [OperationContract]
+        void UpdateWord(WordDC wordDC);
+        [OperationContract]
         ICollection<DictionaryDC> GetDictionariesNameAndId(int userId);
+        [OperationContract]
+        ICollection<WordDC> GetWords(int dictionaryId);
         [OperationContract]
         ICollection<WordDC> GetNotLearnedWords(int quantityWords, int dictionaryId);
         [OperationContract]

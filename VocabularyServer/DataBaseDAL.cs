@@ -38,10 +38,37 @@ namespace DAL
             int countAfter = _ctx.Dictionaries.Count();
             return countAfter > countBefore;
         }
-        //public Dictionary GetDictionaryById(int dictionaryId)
-        //{
-        //    return _ctx.Dictionaries.Where(x => x.Credential.Id == dictionaryId).SingleOrDefault();
-        //}
+        public bool AddWord(Word word)
+        {
+            int countBefore = _ctx.Words.Count();
+            _ctx.Words.Add(word);
+            _ctx.SaveChanges();
+            int countAfter = _ctx.Words.Count();
+            return countAfter > countBefore;
+        }
+        public bool DeleteWord(int wordId)
+        {
+            int countBefore = _ctx.Words.Count();
+            _ctx.Words.Remove(_ctx.Words.Where(x => x.Id == wordId).SingleOrDefault());
+            _ctx.SaveChanges();
+            int countAfter = _ctx.Words.Count();
+            return countBefore > countAfter;
+        }
+        public void UpdateWord(Word newWord)
+        {
+            var word = _ctx.Words.Where(x => x.Id == newWord.Id).SingleOrDefault();
+            if(word != null)
+            {
+                word.WordEng = newWord.WordEng;
+                word.Transcription = newWord.Transcription;
+                word.Translation = newWord.Translation;
+            }
+            _ctx.SaveChanges();
+        }
+        public Dictionary GetDictionary(int dictionaryId)
+        {
+            return _ctx.Dictionaries.Where(x => x.Credential.Id == dictionaryId).SingleOrDefault();
+        }
         public List<Dictionary> GetDictionariesNameAndId(int userId)
         {
             List<Dictionary> listDictionaries = new List<Dictionary>();
@@ -54,10 +81,11 @@ namespace DAL
                              }));
             return listDictionaries;
         }
-        //public List<Word> GetWordsByUserIdAndDictonaryName(int userId, string dictionaryName)
-        //{
-
-        //}
+        public List<Word> GetWords(int dictionaryId)
+        {
+            return _ctx.Words.Where(x => x.Dictionary.Id == dictionaryId)
+                             .ToList();
+        }
 
         public List<Word> GetNotLearnedWords(int quantityWords, int dictionaryId)
         {

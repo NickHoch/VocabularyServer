@@ -10,6 +10,8 @@ namespace WCF.DCs
     public class WordDC
     {
         [DataMember]
+        public int Id { get; set; }
+        [DataMember]
         public string WordEng { get; set; }
         [DataMember]
         public string Transcription { get; set; }

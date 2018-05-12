@@ -6,7 +6,7 @@ using DAL.Utils;
 
 namespace DAL
 {
-    internal class CustomInitializer<T> : DropCreateDatabaseAlways<VocabularyModel>
+    internal class CustomInitializer<T> : DropCreateDatabaseIfModelChanges<VocabularyModel>
     {
         protected override void Seed(VocabularyModel _ctx)
         {

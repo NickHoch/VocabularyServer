@@ -46,12 +46,34 @@ namespace BLL
             var dictionary = MappingDictionary.MappingDTOtoDM(dictionaryDTO);
             return _dal.AddDictionary(dictionary);
         }
+        public bool AddWord(WordDTO wordDTO, int dictionaryId)
+        {
+            var word = MappingWord.MappingDTOtoDM(wordDTO);
+            word.Dictionary = _dal.GetDictionary(dictionaryId);
+            return _dal.AddWord(word);
+        }
+        public bool DeleteWord(int wordId)
+        {
+            return _dal.DeleteWord(wordId);
+        }
+        public void UpdateWord(WordDTO wordDTO)
+        {
+            var word = MappingWord.MappingDTOtoDM(wordDTO);
+            _dal.UpdateWord(word);
+        }
         public List<DictionaryDTO> GetDictionariesNameAndId(int userId)
         {
             List<DictionaryDTO> listDictionariesDTO = new List<DictionaryDTO>();
             var listDictionaries = _dal.GetDictionariesNameAndId(userId);
             listDictionaries.ForEach(x => listDictionariesDTO.Add(MappingDictionary.MappingDMtoDTO(x)));
             return listDictionariesDTO;
+        }
+        public List<WordDTO> GetWords(int dictionaryId)
+        {
+            List<WordDTO> listWordsDTO = new List<WordDTO>();
+            var listWords = _dal.GetWords(dictionaryId);
+            listWords.ForEach(x => listWordsDTO.Add(MappingWord.MappingDMtoDTO(x)));
+            return listWordsDTO;
         }
         public List<WordDTO> GetNotLearnedWords(int quantityWords, int dictionaryId)
         {
@@ -64,5 +86,10 @@ namespace BLL
         {
             _dal.SetToWordsStatusAsLearned(quantityWords, dictionaryId);
         }
+        //public DictionaryDTO GetDictionary(int dictionaryId)
+        //{
+        //    var dictionary = _dal.GetDictionary(dictionaryId);
+        //    return MappingDictionary.MappingDMtoDTO(dictionary);
+        //}
     }
 }

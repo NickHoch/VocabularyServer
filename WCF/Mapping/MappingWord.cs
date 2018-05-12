@@ -19,19 +19,24 @@ namespace WCF.Mapping
                     y => y.MapFrom
                     (
                         z => z.Dictionary
-                        //z => Mapper.Map<DictionaryDTO, DictionaryDC>(z.Dictionary)
                     )).MaxDepth(2);
             });
             IMapper iMapper = configDTOtoDC.CreateMapper();
             return iMapper.Map<WordDTO, WordDC>(wordDTO);
-            //var config = new MapperConfiguration(cfg =>
-            //{
-            //    cfg.CreateMap<WordDTO, WordDC>();
-            //    cfg.CreateMap<DictionaryDTO, DictionaryDC>();
-            //});
-            //config.AssertConfigurationIsValid();
-            //var mapper = config.CreateMapper();
-            //return mapper.Map<WordDTO, WordDC>(wordDTO);
+        }
+        public static WordDTO MappingDCtoDTO(WordDC wordDC)
+        {
+            MapperConfiguration configDCtoDTO = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<WordDC, WordDTO>().MaxDepth(2)
+                .ForMember(x => x.Dictionary,
+                    y => y.MapFrom
+                    (
+                        z => z.Dictionary
+                    )).MaxDepth(2);
+            });
+            IMapper iMapper = configDCtoDTO.CreateMapper();
+            return iMapper.Map<WordDC, WordDTO>(wordDC);
         }
     }
 }
