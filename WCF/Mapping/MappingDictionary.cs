@@ -18,5 +18,13 @@ namespace WCF.Mapping
             IMapper iMapper = configDCtoDTO.CreateMapper();
             return iMapper.Map<DictionaryDC, DictionaryDTO>(dictionaryDC);
         }
+        public static DictionaryDC MappingDTOtoDC(DictionaryDTO dictionaryDTO)
+        {
+            MapperConfiguration configDTOtoDC = new MapperConfiguration(cfg => {
+                cfg.CreateMap<DictionaryDTO, DictionaryDC>();
+            });
+            IMapper iMapper = configDTOtoDC.CreateMapper();
+            return iMapper.Map<DictionaryDTO, DictionaryDC>(dictionaryDTO);
+        }
     }
 }

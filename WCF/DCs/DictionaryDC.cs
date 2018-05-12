@@ -10,6 +10,8 @@ namespace WCF.DCs
     public class DictionaryDC
     {
         [DataMember]
+        public int Id { get; set; }
+        [DataMember]
         public string Name { get; set; }
         [DataMember]
         public CredentialDC Credential { get; set; }

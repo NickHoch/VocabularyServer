@@ -42,29 +42,40 @@ namespace DAL
         //{
         //    return _ctx.Dictionaries.Where(x => x.Credential.Id == dictionaryId).SingleOrDefault();
         //}
-        public List<string> GetDictionariesNameByUserId(int userId)
+        public List<Dictionary> GetDictionariesNameAndId(int userId)
         {
-            return _ctx.Dictionaries.Where(x => x.Credential.Id == userId)
-                                    .Select(x => x.Name)
-                                    .ToList();
+            List<Dictionary> listDictionaries = new List<Dictionary>();
+            _ctx.Dictionaries.Where(x => x.Credential.Id == userId)
+                             .ToList()
+                             .ForEach(x => listDictionaries.Add(new Dictionary
+                             {
+                                 Id = x.Id,
+                                 Name = x.Name
+                             }));
+            return listDictionaries;
         }
-        public List<Word> GetNotLearnedWords(int quantityWords, string dictionaryName)
+        //public List<Word> GetWordsByUserIdAndDictonaryName(int userId, string dictionaryName)
+        //{
+
+        //}
+
+        public List<Word> GetNotLearnedWords(int quantityWords, int dictionaryId)
         {
-            return _ctx.Words.Where(x => x.Dictionary.Name == dictionaryName
-                                        && x.IsLearnedWord == false)
+            return _ctx.Words.Where(x => x.Dictionary.Id == dictionaryId
+                                       && x.IsLearnedWord == false)
                              .Take(quantityWords)
                              .ToList();
         }
-        public void SetToWordsStatusAsLearned(int quantityWords, string dictionaryName)
+        public void SetToWordsStatusAsLearned(int quantityWords, int dictionaryId)
         {
-            _ctx.Words.Where(x => x.Dictionary.Name == dictionaryName
-                                        && x.IsLearnedWord == false)
+            _ctx.Words.Where(x => x.Dictionary.Id == dictionaryId
+                                && x.IsLearnedWord == false)
                       .Take(quantityWords)
                       .ToList()
                       .ForEach(x => x.IsLearnedWord = true);
             _ctx.SaveChanges();
         }
-        public bool StartInitializeDctionary(Dictionary dictionary)
+        public bool StartInitializeDictionary(Dictionary dictionary)
         {
             string path = Helper.GetPathToBaseDirectory();
             int countBefore = _ctx.Words.Count();

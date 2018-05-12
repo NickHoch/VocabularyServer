@@ -20,10 +20,10 @@ namespace WCF
         [OperationContract]
         bool AddDictionary(DictionaryDC dictionaryDC);
         [OperationContract]
-        ICollection<string> GetDictionariesNameByUserId(int userId);
+        ICollection<DictionaryDC> GetDictionariesNameAndId(int userId);
         [OperationContract]
-        ICollection<WordDC> GetNotLearnedWords(int quantityWords, string dictionaryName);
+        ICollection<WordDC> GetNotLearnedWords(int quantityWords, int dictionaryId);
         [OperationContract]
-        void SetToWordsStatusAsLearned(int quantityWords, string dictionaryName);
+        void SetToWordsStatusAsLearned(int quantityWords, int dictionaryId);
     }
 }

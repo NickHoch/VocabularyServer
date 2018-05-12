@@ -60,39 +60,39 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
-        public ICollection<string> GetDictionariesNameByUserId(int userId)
+        public ICollection<DictionaryDC> GetDictionariesNameAndId(int userId)
         {
             try
             {
-                return _bll.GetDictionariesNameByUserId(userId);
+                List<DictionaryDC> listDictionariesDC = new List<DictionaryDC>();
+                var listDictionariesDTO = _bll.GetDictionariesNameAndId(userId);
+                listDictionariesDTO.ForEach(x => listDictionariesDC.Add(MappingDictionary.MappingDTOtoDC(x)));
+                return listDictionariesDC;
             }
             catch (Exception ex)
             {
                 throw new FaultException(ex.Message);
             }
         }
-        public ICollection<WordDC> GetNotLearnedWords(int quantityWords, string dictionaryName)
+        public ICollection<WordDC> GetNotLearnedWords(int quantityWords, int dictionaryId)
         {
             try
             {
-                var listWordDTO = _bll.GetNotLearnedWords(quantityWords, dictionaryName);
-                List<WordDC> listWordDC = new List<WordDC>();
-                foreach (var item in listWordDTO)
-                {
-                    listWordDC.Add(MappingWord.MappingDTOtoDC(item));
-                }
-                return listWordDC;
+                List<WordDC> listWordsDC = new List<WordDC>();
+                var listWordsDTO = _bll.GetNotLearnedWords(quantityWords, dictionaryId);
+                listWordsDTO.ForEach(x => listWordsDC.Add(MappingWord.MappingDTOtoDC(x)));
+                return listWordsDC;
             }
             catch (Exception ex)
             {
                 throw new FaultException(ex.Message);
             }
         }
-        public void SetToWordsStatusAsLearned(int quantityWords, string dictionaryName)
+        public void SetToWordsStatusAsLearned(int quantityWords, int dictionaryId)
         {
             try
             {
-                _bll.SetToWordsStatusAsLearned(quantityWords, dictionaryName);
+                _bll.SetToWordsStatusAsLearned(quantityWords, dictionaryId);
             }
             catch (Exception ex)
             {
