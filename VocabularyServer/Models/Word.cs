@@ -16,7 +16,8 @@ namespace DAL
         public byte[] Sound { get; set; }
         public byte[] Image { get; set; }
         public List<Boolean> IsLearned = new List<Boolean>() { false, false, false, false };
-        public bool IsLearnedWord { get; set; } = false;        
+        public bool IsLearnedWord { get; set; } = false;
+        [Required]
         public virtual Dictionary Dictionary { get; set; }
     }
 }

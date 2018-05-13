@@ -13,6 +13,28 @@ namespace WCF
     public class Vocabulary : IVocabulary
     {
         private DataBaseBLL _bll = new DataBaseBLL();
+        public bool IsEmailAddressExists(string email)
+        {
+            try
+            {
+                return _bll.IsEmailAddressExists(email);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public bool IsDictionaryNameExists(string dictionaryName, int userId)
+        {            
+            try
+            {
+                return _bll.IsDictionaryNameExists(dictionaryName, userId);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
         public int? GetUserIdByCredential(CredentialDC credentialDC)
         {
             try
@@ -25,35 +47,12 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
-        public bool IsEmailAddressFree(string email)
-        {
-            try
-            {
-                return _bll.IsEmailAddressFree(email);
-            }
-            catch (Exception ex)
-            {
-                throw new FaultException(ex.Message);
-            }
-        }
         public bool AddUser(CredentialDC credentialDC)
         {
             try
             {
                 var credentialDTO = MappingCredential.MappingDCtoDTO(credentialDC);
                 return _bll.AddUser(credentialDTO);
-            }
-            catch (Exception ex)
-            {
-                throw new FaultException(ex.Message);
-            }
-        }
-        public bool AddDictionary(DictionaryDC dictionaryDC)
-        {
-            try
-            {
-                var dictionaryDTO = MappingDictionary.MappingDCtoDTO(dictionaryDC);
-                return _bll.AddDictionary(dictionaryDTO);
             }
             catch (Exception ex)
             {
@@ -95,20 +94,6 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
-        public ICollection<DictionaryDC> GetDictionariesNameAndId(int userId)
-        {
-            try
-            {
-                List<DictionaryDC> listDictionariesDC = new List<DictionaryDC>();
-                var listDictionariesDTO = _bll.GetDictionariesNameAndId(userId);
-                listDictionariesDTO.ForEach(x => listDictionariesDC.Add(MappingDictionary.MappingDTOtoDC(x)));
-                return listDictionariesDC;
-            }
-            catch (Exception ex)
-            {
-                throw new FaultException(ex.Message);
-            }
-        }
         public ICollection<WordDC> GetWords(int dictionaryId)
         {
             try
@@ -142,6 +127,43 @@ namespace WCF
             try
             {
                 _bll.SetToWordsStatusAsLearned(quantityWords, dictionaryId);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public bool AddDictionary(DictionaryDC dictionaryDC, int userId)
+        {
+            try
+            {
+                var dictionaryDTO = MappingDictionary.MappingDCtoDTO(dictionaryDC);
+                return _bll.AddDictionary(dictionaryDTO, userId);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public bool DeleteDictionary(int dictionaryId)
+        {
+            try
+            {
+                return _bll.DeleteDictionary(dictionaryId);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public ICollection<DictionaryDC> GetDictionariesNameAndId(int userId)
+        {
+            try
+            {
+                List<DictionaryDC> listDictionariesDC = new List<DictionaryDC>();
+                var listDictionariesDTO = _bll.GetDictionariesNameAndId(userId);
+                listDictionariesDTO.ForEach(x => listDictionariesDC.Add(MappingDictionary.MappingDTOtoDC(x)));
+                return listDictionariesDC;
             }
             catch (Exception ex)
             {

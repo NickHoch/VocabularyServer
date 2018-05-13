@@ -8,6 +8,15 @@ namespace DAL
     public class DataBaseDAL
     {
         public readonly VocabularyModel _ctx = new VocabularyModel();
+        public bool IsEmailAddressExists(string email)
+        {
+            return _ctx.Credentials.Any(x => x.Email == email);
+        }
+        public bool IsDictionaryNameExists(string dictionaryName, int userId)
+        {
+            return _ctx.Dictionaries.Any(x => x.Credential.Id == userId
+                                            && x.Name == dictionaryName);
+        }
         public int? GetUserIdByCredential(Credential credential)
         {
             var cred = _ctx.Credentials.Where(x => x.Email == credential.Email && x.Password == credential.Password)
@@ -18,9 +27,10 @@ namespace DAL
             }
             return null;
         }
-        public bool IsEmailAddressFree(string email)
+        public Credential GetCredentialById(int userId)
         {
-            return _ctx.Credentials.Any(x => x.Email == email);
+            return _ctx.Credentials.Where(x => x.Id == userId)
+                                   .SingleOrDefault();
         }
         public bool AddCredential(Credential credential)
         {
@@ -28,14 +38,6 @@ namespace DAL
             _ctx.Credentials.Add(credential);
             _ctx.SaveChanges();
             int countAfter = _ctx.Credentials.Count();
-            return countAfter > countBefore;
-        }
-        public bool AddDictionary(Dictionary dictionary)
-        {
-            int countBefore = _ctx.Dictionaries.Count();
-            _ctx.Dictionaries.Add(dictionary);
-            _ctx.SaveChanges();
-            int countAfter = _ctx.Dictionaries.Count();
             return countAfter > countBefore;
         }
         public bool AddWord(Word word)
@@ -49,7 +51,8 @@ namespace DAL
         public bool DeleteWord(int wordId)
         {
             int countBefore = _ctx.Words.Count();
-            _ctx.Words.Remove(_ctx.Words.Where(x => x.Id == wordId).SingleOrDefault());
+            var wordToDelete = _ctx.Words.Where(x => x.Id == wordId).SingleOrDefault();
+            _ctx.Words.Remove(wordToDelete);
             _ctx.SaveChanges();
             int countAfter = _ctx.Words.Count();
             return countBefore > countAfter;
@@ -64,22 +67,6 @@ namespace DAL
                 word.Translation = newWord.Translation;
             }
             _ctx.SaveChanges();
-        }
-        public Dictionary GetDictionary(int dictionaryId)
-        {
-            return _ctx.Dictionaries.Where(x => x.Credential.Id == dictionaryId).SingleOrDefault();
-        }
-        public List<Dictionary> GetDictionariesNameAndId(int userId)
-        {
-            List<Dictionary> listDictionaries = new List<Dictionary>();
-            _ctx.Dictionaries.Where(x => x.Credential.Id == userId)
-                             .ToList()
-                             .ForEach(x => listDictionaries.Add(new Dictionary
-                             {
-                                 Id = x.Id,
-                                 Name = x.Name
-                             }));
-            return listDictionaries;
         }
         public List<Word> GetWords(int dictionaryId)
         {
@@ -102,6 +89,38 @@ namespace DAL
                       .ToList()
                       .ForEach(x => x.IsLearnedWord = true);
             _ctx.SaveChanges();
+        }
+        public bool AddDictionary(Dictionary dictionary)
+        {
+            int countBefore = _ctx.Dictionaries.Count();
+            _ctx.Dictionaries.Add(dictionary);
+            _ctx.SaveChanges();
+            int countAfter = _ctx.Dictionaries.Count();
+            return countAfter > countBefore;
+        }
+        public bool DeleteDictionary(int dictionaryId)
+        {
+            int countBefore = _ctx.Dictionaries.Count();
+            _ctx.Dictionaries.Remove(GetDictionary(dictionaryId));
+            _ctx.SaveChanges();
+            int countAfter = _ctx.Dictionaries.Count();
+            return countBefore > countAfter;
+        }
+        public Dictionary GetDictionary(int dictionaryId)
+        {
+            return _ctx.Dictionaries.Where(x => x.Id == dictionaryId).SingleOrDefault();
+        }
+        public List<Dictionary> GetDictionariesNameAndId(int userId)
+        {
+            List<Dictionary> listDictionaries = new List<Dictionary>();
+            _ctx.Dictionaries.Where(x => x.Credential.Id == userId)
+                             .ToList()
+                             .ForEach(x => listDictionaries.Add(new Dictionary
+                             {
+                                 Id = x.Id,
+                                 Name = x.Name
+                             }));
+            return listDictionaries;
         }
         public bool StartInitializeDictionary(Dictionary dictionary)
         {

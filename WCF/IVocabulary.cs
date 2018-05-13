@@ -12,13 +12,13 @@ namespace WCF
     public interface IVocabulary
     {
         [OperationContract]
+        bool IsDictionaryNameExists(string email, int userId);
+        [OperationContract]
+        bool IsEmailAddressExists(string email);
+        [OperationContract]
         int? GetUserIdByCredential(CredentialDC credentialDC);
         [OperationContract]
-        bool IsEmailAddressFree(string email);
-        [OperationContract]
         bool AddUser(CredentialDC credentialDC);
-        [OperationContract]
-        bool AddDictionary(DictionaryDC dictionaryDC);
         [OperationContract]
         bool AddWord(WordDC wordDC, int dictionaryId);
         [OperationContract]
@@ -26,12 +26,16 @@ namespace WCF
         [OperationContract]
         void UpdateWord(WordDC wordDC);
         [OperationContract]
-        ICollection<DictionaryDC> GetDictionariesNameAndId(int userId);
-        [OperationContract]
         ICollection<WordDC> GetWords(int dictionaryId);
         [OperationContract]
         ICollection<WordDC> GetNotLearnedWords(int quantityWords, int dictionaryId);
         [OperationContract]
         void SetToWordsStatusAsLearned(int quantityWords, int dictionaryId);
+        [OperationContract]
+        bool AddDictionary(DictionaryDC dictionaryDC, int userId);
+        [OperationContract]
+        bool DeleteDictionary(int dictionaryId);
+        [OperationContract]
+        ICollection<DictionaryDC> GetDictionariesNameAndId(int userId);
     }
 }
