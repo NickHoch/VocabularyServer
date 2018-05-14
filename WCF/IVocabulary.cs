@@ -32,6 +32,12 @@ namespace WCF
         [OperationContract]
         void SetToWordsStatusAsLearned(int quantityWords, int dictionaryId);
         [OperationContract]
+        void SetToWordsStatusAsUnlearned(int dictionaryId);
+        [OperationContract]
+        void ChangeImage(int wordId, byte[] newImage);
+        [OperationContract]
+        void ChangeSound(int wordId, byte[] newSound);
+        [OperationContract]
         bool AddDictionary(DictionaryDC dictionaryDC, int userId);
         [OperationContract]
         bool DeleteDictionary(int dictionaryId);

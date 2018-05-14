@@ -65,6 +65,7 @@ namespace DAL
                 word.WordEng = newWord.WordEng;
                 word.Transcription = newWord.Transcription;
                 word.Translation = newWord.Translation;
+                word.IsLearnedWord = newWord.IsLearnedWord;
             }
             _ctx.SaveChanges();
         }
@@ -73,7 +74,6 @@ namespace DAL
             return _ctx.Words.Where(x => x.Dictionary.Id == dictionaryId)
                              .ToList();
         }
-
         public List<Word> GetNotLearnedWords(int quantityWords, int dictionaryId)
         {
             return _ctx.Words.Where(x => x.Dictionary.Id == dictionaryId
@@ -88,6 +88,27 @@ namespace DAL
                       .Take(quantityWords)
                       .ToList()
                       .ForEach(x => x.IsLearnedWord = true);
+            _ctx.SaveChanges();
+        }
+        public void SetToWordsStatusAsUnlearned(int dictionaryId)
+        {
+            _ctx.Words.Where(x => x.Dictionary.Id == dictionaryId)
+                      .ToList()
+                      .ForEach(x => x.IsLearnedWord = false);
+            _ctx.SaveChanges();
+        }
+        public void ChangeImage(int wordId, byte[] newImage)
+        {
+            _ctx.Words.Where(x => x.Id == wordId)
+                      .SingleOrDefault()
+                      .Image = newImage;
+            _ctx.SaveChanges();
+        }
+        public void ChangeSound(int wordId, byte[] newSound)
+        {
+            _ctx.Words.Where(x => x.Id == wordId)
+                      .SingleOrDefault()
+                      .Sound = newSound;
             _ctx.SaveChanges();
         }
         public bool AddDictionary(Dictionary dictionary)

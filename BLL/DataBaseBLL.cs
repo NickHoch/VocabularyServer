@@ -78,6 +78,18 @@ namespace BLL
         {
             _dal.SetToWordsStatusAsLearned(quantityWords, dictionaryId);
         }
+        public void SetToWordsStatusAsUnlearned(int dictionaryId)
+        {
+            _dal.SetToWordsStatusAsUnlearned(dictionaryId);
+        }
+        public void ChangeImage(int wordId, byte[] newImage)
+        {
+            _dal.ChangeImage(wordId, newImage);
+        }
+        public void ChangeSound(int wordId, byte[] newSound)
+        {
+            _dal.ChangeSound(wordId, newSound);
+        }
         public bool AddDictionary(DictionaryDTO dictionaryDTO, int userId)
         {
             var dictionary = MappingDictionary.MappingDTOtoDM(dictionaryDTO);
@@ -95,10 +107,5 @@ namespace BLL
             listDictionaries.ForEach(x => listDictionariesDTO.Add(MappingDictionary.MappingDMtoDTO(x)));
             return listDictionariesDTO;
         }
-        //public DictionaryDTO GetDictionary(int dictionaryId)
-        //{
-        //    var dictionary = _dal.GetDictionary(dictionaryId);
-        //    return MappingDictionary.MappingDMtoDTO(dictionary);
-        //}
     }
 }

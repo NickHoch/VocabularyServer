@@ -133,6 +133,39 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
+        public void SetToWordsStatusAsUnlearned(int dictionaryId)
+        {
+            try
+            {
+                _bll.SetToWordsStatusAsUnlearned(dictionaryId);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public void ChangeImage(int wordId, byte[] newImage)
+        {
+            try
+            {
+                _bll.ChangeImage(wordId, newImage);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+        public void ChangeSound(int wordId, byte[] newSound)
+        {
+            try
+            {
+                _bll.ChangeSound(wordId, newSound);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
         public bool AddDictionary(DictionaryDC dictionaryDC, int userId)
         {
             try
