@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace DAL
 {
+    [Serializable]
     public class Word
     {
         public int Id { get; set; }
@@ -20,5 +22,6 @@ namespace DAL
         public bool IsLearnedWord { get; set; }
         [Required]
         public virtual DictionaryExtn Dictionary { get; set; }
+        public Word() { }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace DAL
 {
+    [Serializable] //////////
     public class Credential
     {
         public int Id { get; set; }
@@ -11,6 +14,8 @@ namespace DAL
         public string Email { get; set; }
         [Required, StringLength(20)]
         public string Password { get; set; }
+        [XmlIgnoreAttribute]
         public virtual ICollection<DictionaryExtn> Dictionaries { get; set; }
+        public Credential() { } //////////
     }
 }
