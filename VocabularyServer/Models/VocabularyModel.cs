@@ -1,5 +1,6 @@
 namespace DAL
 {
+    using DAL.Models;
     using System.Data.Entity;
 
     public class VocabularyModel : DbContext
@@ -10,6 +11,6 @@ namespace DAL
         }
         public virtual DbSet<Word> Words { get; set; }
         public virtual DbSet<Credential> Credentials { get; set; }
-        public virtual DbSet<Dictionary> Dictionaries { get; set; }
+        public virtual DbSet<DictionaryExtn> Dictionaries { get; set; }
     }
 }

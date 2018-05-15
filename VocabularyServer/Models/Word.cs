@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,6 +19,6 @@ namespace DAL
         public List<Boolean> IsLearned = new List<Boolean>();
         public bool IsLearnedWord { get; set; }
         [Required]
-        public virtual Dictionary Dictionary { get; set; }
+        public virtual DictionaryExtn Dictionary { get; set; }
     }
 }

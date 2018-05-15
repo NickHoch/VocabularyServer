@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DAL;
 using BLL.DTOs;
 using BLL.Mapping;
+using DAL.Models;
 
 namespace BLL
 {
@@ -32,7 +33,7 @@ namespace BLL
             var resAddCred = _dal.AddCredential(credential);
             if(resAddCred)
             {
-                Dictionary dictionary = new Dictionary
+                DictionaryExtn dictionary = new DictionaryExtn
                 {
                     Name = "Animals",
                     Credential = credential
@@ -90,9 +91,9 @@ namespace BLL
         {
             _dal.ChangeSound(wordId, newSound);
         }
-        public bool AddDictionary(DictionaryDTO dictionaryDTO, int userId)
+        public bool AddDictionary(DictionaryExtnDTO dictionaryDTO, int userId)
         {
-            var dictionary = MappingDictionary.MappingDTOtoDM(dictionaryDTO);
+            var dictionary = MappingDictionaryExtn.MappingDTOtoDM(dictionaryDTO);
             dictionary.Credential = _dal.GetCredentialById(userId);
             return _dal.AddDictionary(dictionary);
         }
@@ -100,10 +101,10 @@ namespace BLL
         {
             return _dal.DeleteDictionary(dictionaryId);
         }
-        public List<DictionaryDTO> GetDictionariesNameAndId(int userId)
+        public List<DictionaryDTO> GetDictionariesBaseInfo(int userId)
         {
             List<DictionaryDTO> listDictionariesDTO = new List<DictionaryDTO>();
-            var listDictionaries = _dal.GetDictionariesNameAndId(userId);
+            var listDictionaries = _dal.GetDictionariesBaseInfo(userId);
             listDictionaries.ForEach(x => listDictionariesDTO.Add(MappingDictionary.MappingDMtoDTO(x)));
             return listDictionariesDTO;
         }

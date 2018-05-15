@@ -6,12 +6,11 @@ using System.Web;
 
 namespace WCF.DCs
 {
-    [DataContract]
-    public class DictionaryDC
+    public class DictionaryExtnDC : DictionaryDC
     {
         [DataMember]
-        public int Id { get; set; }
+        public CredentialDC Credential { get; set; }
         [DataMember]
-        public string Name { get; set; }
+        public ICollection<WordDC> Words { get; set; }
     }
 }

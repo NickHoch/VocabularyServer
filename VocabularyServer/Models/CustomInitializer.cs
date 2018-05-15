@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
+using DAL.Models;
 using DAL.Utils;
 
 namespace DAL
@@ -18,7 +19,7 @@ namespace DAL
             };
             _ctx.Credentials.Add(cred1);
 
-            Dictionary dict1 = new Dictionary
+            DictionaryExtn dict1 = new DictionaryExtn
             {
                 Name = "Animal",
                 Credential = cred1

@@ -166,11 +166,11 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
-        public bool AddDictionary(DictionaryDC dictionaryDC, int userId)
+        public bool AddDictionary(DictionaryExtnDC dictionaryDC, int userId)
         {
             try
             {
-                var dictionaryDTO = MappingDictionary.MappingDCtoDTO(dictionaryDC);
+                var dictionaryDTO = MappingDictionaryExtn.MappingDCtoDTO(dictionaryDC);
                 return _bll.AddDictionary(dictionaryDTO, userId);
             }
             catch (Exception ex)
@@ -189,12 +189,12 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
-        public ICollection<DictionaryDC> GetDictionariesNameAndId(int userId)
+        public ICollection<DictionaryDC> GetDictionariesBaseInfo(int userId)
         {
             try
             {
                 List<DictionaryDC> listDictionariesDC = new List<DictionaryDC>();
-                var listDictionariesDTO = _bll.GetDictionariesNameAndId(userId);
+                var listDictionariesDTO = _bll.GetDictionariesBaseInfo(userId);
                 listDictionariesDTO.ForEach(x => listDictionariesDC.Add(MappingDictionary.MappingDTOtoDC(x)));
                 return listDictionariesDC;
             }

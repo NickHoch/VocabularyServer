@@ -38,10 +38,10 @@ namespace WCF
         [OperationContract]
         void ChangeSound(int wordId, byte[] newSound);
         [OperationContract]
-        bool AddDictionary(DictionaryDC dictionaryDC, int userId);
+        bool AddDictionary(DictionaryExtnDC dictionaryDC, int userId);
         [OperationContract]
         bool DeleteDictionary(int dictionaryId);
         [OperationContract]
-        ICollection<DictionaryDC> GetDictionariesNameAndId(int userId);
+        ICollection<DictionaryDC> GetDictionariesBaseInfo(int userId);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DAL.Models;
 using DAL.Utils;
 
 namespace DAL
@@ -111,7 +112,7 @@ namespace DAL
                       .Sound = newSound;
             _ctx.SaveChanges();
         }
-        public bool AddDictionary(Dictionary dictionary)
+        public bool AddDictionary(DictionaryExtn dictionary)
         {
             int countBefore = _ctx.Dictionaries.Count();
             _ctx.Dictionaries.Add(dictionary);
@@ -127,11 +128,11 @@ namespace DAL
             int countAfter = _ctx.Dictionaries.Count();
             return countBefore > countAfter;
         }
-        public Dictionary GetDictionary(int dictionaryId)
+        public DictionaryExtn GetDictionary(int dictionaryId)
         {
             return _ctx.Dictionaries.Where(x => x.Id == dictionaryId).SingleOrDefault();
         }
-        public List<Dictionary> GetDictionariesNameAndId(int userId)
+        public List<Dictionary> GetDictionariesBaseInfo(int userId)
         {
             List<Dictionary> listDictionaries = new List<Dictionary>();
             _ctx.Dictionaries.Where(x => x.Credential.Id == userId)
@@ -143,7 +144,7 @@ namespace DAL
                              }));
             return listDictionaries;
         }
-        public bool StartInitializeDictionary(Dictionary dictionary)
+        public bool StartInitializeDictionary(DictionaryExtn dictionary)
         {
             string path = Helper.GetPathToBaseDirectory();
             int countBefore = _ctx.Words.Count();

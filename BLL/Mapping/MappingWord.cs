@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BLL.DTOs;
 using DAL;
+using DAL.Models;
 
 namespace BLL.Mapping
 {
@@ -16,7 +17,7 @@ namespace BLL.Mapping
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Word, WordDTO>().MaxDepth(2);
-                cfg.CreateMap<Dictionary, DictionaryDTO>().MaxDepth(2);
+                cfg.CreateMap<DictionaryExtn, DictionaryExtnDTO>().MaxDepth(2);
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
@@ -27,7 +28,7 @@ namespace BLL.Mapping
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<WordDTO, Word>().MaxDepth(2);
-                cfg.CreateMap<DictionaryDTO, Dictionary>().MaxDepth(2);
+                cfg.CreateMap<DictionaryExtnDTO, DictionaryExtn>().MaxDepth(2);
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();

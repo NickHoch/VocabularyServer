@@ -14,13 +14,10 @@ namespace WCF.Mapping
         {
             MapperConfiguration configDTOtoDC = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<WordDTO, WordDC>().MaxDepth(2)
-                .ForMember(x => x.Dictionary,
-                    y => y.MapFrom
-                    (
-                        z => z.Dictionary
-                    )).MaxDepth(2);
+                cfg.CreateMap<WordDTO, WordDC>().MaxDepth(2);
+                cfg.CreateMap<DictionaryExtnDTO, DictionaryExtnDC>().MaxDepth(2);
             });
+            configDTOtoDC.AssertConfigurationIsValid();
             IMapper iMapper = configDTOtoDC.CreateMapper();
             return iMapper.Map<WordDTO, WordDC>(wordDTO);
         }
@@ -28,13 +25,10 @@ namespace WCF.Mapping
         {
             MapperConfiguration configDCtoDTO = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<WordDC, WordDTO>().MaxDepth(2)
-                .ForMember(x => x.Dictionary,
-                    y => y.MapFrom
-                    (
-                        z => z.Dictionary
-                    )).MaxDepth(2);
+                cfg.CreateMap<WordDC, WordDTO>().MaxDepth(2);
+                cfg.CreateMap<DictionaryExtnDC, DictionaryExtnDTO>().MaxDepth(2);
             });
+            configDCtoDTO.AssertConfigurationIsValid();
             IMapper iMapper = configDCtoDTO.CreateMapper();
             return iMapper.Map<WordDC, WordDTO>(wordDC);
         }
