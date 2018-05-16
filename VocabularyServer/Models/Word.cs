@@ -18,7 +18,6 @@ namespace DAL
         public string Translation { get; set; }
         public byte[] Sound { get; set; }
         public byte[] Image { get; set; }
-        public List<Boolean> IsLearned = new List<Boolean>();
         public bool IsLearnedWord { get; set; }
         [Required]
         public virtual DictionaryExtn Dictionary { get; set; }

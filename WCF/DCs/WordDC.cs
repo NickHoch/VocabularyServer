@@ -22,8 +22,6 @@ namespace WCF.DCs
         [DataMember]
         public byte[] Image { get; set; }
         [DataMember]
-        public ICollection<Boolean> IsLearned = new List<Boolean>();
-        [DataMember]
         public bool IsLearnedWord { get; set; }
         [DataMember]
         public DictionaryExtnDC Dictionary { get; set; }
