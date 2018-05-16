@@ -15,13 +15,13 @@ namespace DAL
         protected override void Seed(VocabularyModel _ctx)
         {
             string path = Helper.GetPathToBaseDirectory();
+
             //Credential cred1 = new Credential
             //{
             //    Email = "nhy66@gmail.com",
             //    Password = "5984ljkfh"
             //};
             //_ctx.Credentials.Add(cred1);
-
             //DictionaryExtn dict1 = new DictionaryExtn
             //{
             //    Name = "Animal",
@@ -121,34 +121,32 @@ namespace DAL
             //        Sound = File.ReadAllBytes($@"{path}\Sound\ratel.mp3")
             //    }
             //};
-
             //_ctx.Words.AddRange(words);
             //_ctx.SaveChanges();
-            ////DataContractSerializer formatter = new DataContractSerializer( typeof(Word[]), 
-            ////    new Type[] {typeof(Dictionary), typeof(DictionaryExtn), typeof(Credential) }, 10, false, true,  ) ;
-            //var serializer = new DataContractSerializer(typeof(Word[]), null,
-            //    0x7FFF /*maxItemsInObjectGraph*/,
-            //    false /*ignoreExtensionDataObject*/,
-            //    true /*preserveObjectReferences : this is where the magic happens */,
-            //    null /*dataContractSurrogate*/);
+
+            //var serializer = new DataContractSerializer(typeof(Word[]),
+            //    null,
+            //    0x7FFF,
+            //    false,
+            //    true,
+            //    null);
             //using (FileStream fs = new FileStream(@"D:\words.xml", FileMode.OpenOrCreate))
             //{
             //    serializer.WriteObject(fs, words);
-            //    //serializer.Serialize(fs, words);
             //}
 
             Word[] words = null;
             var serializer = new DataContractSerializer(typeof(Word[]), null,
-                0x7FFF /*maxItemsInObjectGraph*/,
-                false /*ignoreExtensionDataObject*/,
-                true /*preserveObjectReferences : this is where the magic happens */,
-                null /*dataContractSurrogate*/);
-            //XmlSerializer formatter = new XmlSerializer(typeof(Word[]));
+                0x7FFF,
+                false,
+                true,
+                null);
             using (FileStream fs = new FileStream(@"D:\words.xml", FileMode.OpenOrCreate))
             {
-                //words = (Word[])formatter.Deserialize(fs);
-                XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas() { MaxArrayLength = 2147483647 } );
-
+                XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas()
+                                                                                  {
+                                                                                      MaxArrayLength = 2147483647
+                                                                                  });
                 words = (Word[])serializer.ReadObject(reader);
                 reader.Close();
             }

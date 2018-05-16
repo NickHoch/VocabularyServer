@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace DAL
 {
-    [Serializable] //////////
+    [Serializable]
     public class Credential
     {
         public int Id { get; set; }
@@ -16,6 +16,6 @@ namespace DAL
         public string Password { get; set; }
         [XmlIgnoreAttribute]
         public virtual ICollection<DictionaryExtn> Dictionaries { get; set; }
-        public Credential() { } //////////
+        public Credential() { }
     }
 }
