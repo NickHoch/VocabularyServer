@@ -178,6 +178,17 @@ namespace WCF
                 throw new FaultException(ex.Message);
             }
         }
+        public void UpdateDictionary(int dictionaryId, string newDictionaryName)
+        {
+            try
+            {
+                _bll.UpdateDictionary(dictionaryId, newDictionaryName);
+            }
+            catch(Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
         public bool DeleteDictionary(int dictionaryId)
         {
             try

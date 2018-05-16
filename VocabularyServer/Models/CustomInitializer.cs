@@ -10,24 +10,22 @@ using DAL.Utils;
 
 namespace DAL
 {
-    internal class CustomInitializer<T> : DropCreateDatabaseAlways<VocabularyModel>
+    internal class CustomInitializer<T> : DropCreateDatabaseIfModelChanges<VocabularyModel>
     {
         protected override void Seed(VocabularyModel _ctx)
         {
             string path = Helper.GetPathToBaseDirectory();
-
+            #region
             //Credential cred1 = new Credential
             //{
             //    Email = "nhy66@gmail.com",
             //    Password = "5984ljkfh"
             //};
-            //_ctx.Credentials.Add(cred1);
             //DictionaryExtn dict1 = new DictionaryExtn
             //{
             //    Name = "Animal",
             //    Credential = cred1
             //};
-            //_ctx.Dictionaries.Add(dict1);
             //Word[] words = new Word[]
             //{
             //    new Word
@@ -38,6 +36,8 @@ namespace DAL
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\cat.jpg"),
             //        Sound = File.ReadAllBytes($@"{path}\Sound\cat.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
             //    },
             //    new Word
             //    {
@@ -46,8 +46,10 @@ namespace DAL
             //        Translation = "пес",
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\dog.jpg"),
-            //        Sound = File.ReadAllBytes($@"{path}\Sound\dog.mp3")
-            //    },
+            //        Sound = File.ReadAllBytes($@"{path}\Sound\dog.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
+            //    },                
             //    new Word
             //    {
             //        WordEng = "bear",
@@ -55,7 +57,9 @@ namespace DAL
             //        Translation = "ведмідь",
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\bear.jpeg"),
-            //        Sound = File.ReadAllBytes($@"{path}\Sound\bear.mp3")
+            //        Sound = File.ReadAllBytes($@"{path}\Sound\bear.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
             //    },
             //    new Word
             //    {
@@ -64,7 +68,9 @@ namespace DAL
             //        Translation = "пінгвін",
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\penguin.png"),
-            //        Sound = File.ReadAllBytes($@"{path}\Sound\penguin.mp3")
+            //        Sound = File.ReadAllBytes($@"{path}\Sound\penguin.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
             //    },
             //    new Word
             //    {
@@ -73,7 +79,9 @@ namespace DAL
             //        Translation = "папуга",
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\parrot.png"),
-            //        Sound = File.ReadAllBytes($@"{path}\Sound\parrot.mp3")
+            //        Sound = File.ReadAllBytes($@"{path}\Sound\parrot.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
             //    },
             //    new Word
             //    {
@@ -82,7 +90,9 @@ namespace DAL
             //        Translation = "осел",
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\donkey.jpg"),
-            //        Sound = File.ReadAllBytes($@"{path}\Sound\donkey.mp3")
+            //        Sound = File.ReadAllBytes($@"{path}\Sound\donkey.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
             //    },
             //    new Word
             //    {
@@ -91,7 +101,9 @@ namespace DAL
             //        Translation = "пацюк",
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\rat.png"),
-            //        Sound = File.ReadAllBytes($@"{path}\Sound\rat.mp3")
+            //        Sound = File.ReadAllBytes($@"{path}\Sound\rat.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
             //    },
             //    new Word
             //    {
@@ -100,7 +112,9 @@ namespace DAL
             //        Translation = "комар",
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\mosquito.jpg"),
-            //        Sound = File.ReadAllBytes($@"{path}\Sound\mosquito.mp3")
+            //        Sound = File.ReadAllBytes($@"{path}\Sound\mosquito.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
             //    },
             //    new Word
             //    {
@@ -109,7 +123,9 @@ namespace DAL
             //        Translation = "лисиця",
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\fox.png"),
-            //        Sound = File.ReadAllBytes($@"{path}\Sound\fox.mp3")
+            //        Sound = File.ReadAllBytes($@"{path}\Sound\fox.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
             //    },
             //    new Word
             //    {
@@ -118,35 +134,34 @@ namespace DAL
             //        Translation = "медоїд",
             //        Dictionary = dict1,
             //        Image = File.ReadAllBytes($@"{path}\Image\ratel.jpg"),
-            //        Sound = File.ReadAllBytes($@"{path}\Sound\ratel.mp3")
+            //        Sound = File.ReadAllBytes($@"{path}\Sound\ratel.mp3"),
+            //        IsLearnedWord = false,
+            //        IsLearned = new List<Boolean>() { false, false, false, false }
             //    }
             //};
-            //_ctx.Words.AddRange(words);
-            //_ctx.SaveChanges();
-
             //var serializer = new DataContractSerializer(typeof(Word[]),
             //    null,
             //    0x7FFF,
             //    false,
             //    true,
             //    null);
-            //using (FileStream fs = new FileStream(@"D:\words.xml", FileMode.OpenOrCreate))
+            //using (FileStream fs = new FileStream($@"{path}\words.xml", FileMode.OpenOrCreate))
             //{
             //    serializer.WriteObject(fs, words);
             //}
-
+            #endregion
             Word[] words = null;
             var serializer = new DataContractSerializer(typeof(Word[]), null,
                 0x7FFF,
                 false,
                 true,
                 null);
-            using (FileStream fs = new FileStream(@"D:\words.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream($@"{path}\words.xml", FileMode.OpenOrCreate))
             {
                 XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas()
-                                                                                  {
-                                                                                      MaxArrayLength = 2147483647
-                                                                                  });
+                {
+                    MaxArrayLength = 2147483647
+                });
                 words = (Word[])serializer.ReadObject(reader);
                 reader.Close();
             }

@@ -97,6 +97,10 @@ namespace BLL
             dictionary.Credential = _dal.GetCredentialById(userId);
             return _dal.AddDictionary(dictionary);
         }
+        public void UpdateDictionary(int dictionaryId, string newDictionaryName)
+        {
+            _dal.UpdateDictionary(dictionaryId, newDictionaryName);
+        }
         public bool DeleteDictionary(int dictionaryId)
         {
             return _dal.DeleteDictionary(dictionaryId);

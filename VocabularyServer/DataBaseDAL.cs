@@ -16,7 +16,7 @@ namespace DAL
         public bool IsDictionaryNameExists(string dictionaryName, int userId)
         {
             return _ctx.Dictionaries.Any(x => x.Credential.Id == userId
-                                            && x.Name == dictionaryName);
+                                           && x.Name == dictionaryName);
         }
         public int? GetUserIdByCredential(Credential credential)
         {
@@ -78,7 +78,7 @@ namespace DAL
         public List<Word> GetNotLearnedWords(int quantityWords, int dictionaryId)
         {
             return _ctx.Words.Where(x => x.Dictionary.Id == dictionaryId
-                                       && x.IsLearnedWord == false)
+                                      && x.IsLearnedWord == false)
                              .Take(quantityWords)
                              .ToList();
         }
@@ -120,6 +120,13 @@ namespace DAL
             int countAfter = _ctx.Dictionaries.Count();
             return countAfter > countBefore;
         }
+        public void UpdateDictionary(int dictionaryId, string newDictionaryName)
+        {
+            _ctx.Dictionaries.Where(x => x.Id == dictionaryId)
+                             .SingleOrDefault()
+                             .Name = newDictionaryName;
+            _ctx.SaveChanges();
+        }
         public bool DeleteDictionary(int dictionaryId)
         {
             int countBefore = _ctx.Dictionaries.Count();
@@ -130,7 +137,8 @@ namespace DAL
         }
         public DictionaryExtn GetDictionary(int dictionaryId)
         {
-            return _ctx.Dictionaries.Where(x => x.Id == dictionaryId).SingleOrDefault();
+            return _ctx.Dictionaries.Where(x => x.Id == dictionaryId)
+                                    .SingleOrDefault();
         }
         public List<Dictionary> GetDictionariesBaseInfo(int userId)
         {

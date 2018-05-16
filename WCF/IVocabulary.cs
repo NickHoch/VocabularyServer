@@ -40,6 +40,8 @@ namespace WCF
         [OperationContract]
         bool AddDictionary(DictionaryExtnDC dictionaryDC, int userId);
         [OperationContract]
+        void UpdateDictionary(int dictionaryId, string newDictionaryName);
+        [OperationContract]
         bool DeleteDictionary(int dictionaryId);
         [OperationContract]
         ICollection<DictionaryDC> GetDictionariesBaseInfo(int userId);
