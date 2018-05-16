@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
 using System.Xml.Serialization;
 using DAL.Models;
 using DAL.Utils;
@@ -119,20 +121,36 @@ namespace DAL
             //        Sound = File.ReadAllBytes($@"{path}\Sound\ratel.mp3")
             //    }
             //};
+
             //_ctx.Words.AddRange(words);
             //_ctx.SaveChanges();
-            //XmlSerializer formatter = new XmlSerializer(typeof(Word[]));
+            ////DataContractSerializer formatter = new DataContractSerializer( typeof(Word[]), 
+            ////    new Type[] {typeof(Dictionary), typeof(DictionaryExtn), typeof(Credential) }, 10, false, true,  ) ;
+            //var serializer = new DataContractSerializer(typeof(Word[]), null,
+            //    0x7FFF /*maxItemsInObjectGraph*/,
+            //    false /*ignoreExtensionDataObject*/,
+            //    true /*preserveObjectReferences : this is where the magic happens */,
+            //    null /*dataContractSurrogate*/);
             //using (FileStream fs = new FileStream(@"D:\words.xml", FileMode.OpenOrCreate))
             //{
-            //    formatter.Serialize(fs, words);
+            //    serializer.WriteObject(fs, words);
+            //    //serializer.Serialize(fs, words);
             //}
-            //words = null;
+
             Word[] words = null;
-            XmlSerializer formatter = new XmlSerializer(typeof(Word[]));
+            var serializer = new DataContractSerializer(typeof(Word[]), null,
+                0x7FFF /*maxItemsInObjectGraph*/,
+                false /*ignoreExtensionDataObject*/,
+                true /*preserveObjectReferences : this is where the magic happens */,
+                null /*dataContractSurrogate*/);
+            //XmlSerializer formatter = new XmlSerializer(typeof(Word[]));
             using (FileStream fs = new FileStream(@"D:\words.xml", FileMode.OpenOrCreate))
             {
-                words = (Word[])formatter.Deserialize(fs);
+                //words = (Word[])formatter.Deserialize(fs);
+                XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas() { MaxArrayLength = 2147483647 } );
 
+                words = (Word[])serializer.ReadObject(reader);
+                reader.Close();
             }
             _ctx.Words.AddRange(words);
             _ctx.SaveChanges();
