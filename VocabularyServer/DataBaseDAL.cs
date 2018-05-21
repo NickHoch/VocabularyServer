@@ -3,11 +3,13 @@ using System.IO;
 using System.Linq;
 using DAL.Models;
 using DAL.Utils;
+using log4net;
 
 namespace DAL
 {
     public class DataBaseDAL
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(DataBaseDAL));
         public readonly VocabularyModel _ctx = new VocabularyModel();
         public bool IsEmailAddressExists(string email)
         {
@@ -30,6 +32,8 @@ namespace DAL
         }
         public Credential GetCredentialById(int userId)
         {
+            log.Info("GetCredentialById");
+            //Logger.Log.Info("GetCredentialById");
             return _ctx.Credentials.Where(x => x.Id == userId)
                                    .SingleOrDefault();
         }
