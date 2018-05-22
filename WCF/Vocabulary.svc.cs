@@ -12,6 +12,24 @@ namespace WCF
 {
     public class Vocabulary : IVocabulary
     {
+        private string path;
+        private string fileName;
+        public Vocabulary()
+        {
+            //GetExeLocation();
+            //StartExeWhenPcStartup(fileName, path);
+        }
+        //public void GetExeLocation()
+        //{
+        //    path = System.Reflection.Assembly.GetEntryAssembly().Location;
+        //    fileName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        //}
+        //public void StartExeWhenPcStartup(string filename, string filepath)
+        //{
+        //    Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        //    key.SetValue(filename, filepath);
+        //}
+
         private DataBaseBLL _bll = new DataBaseBLL();
         public bool IsEmailAddressExists(string email)
         {
