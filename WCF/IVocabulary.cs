@@ -8,7 +8,7 @@ using WCF.DCs;
 
 namespace WCF
 {
-    [ServiceContract]
+    [ServiceContract(Namespace = "http://Microsoft.ServiceModel.Samples")]
     public interface IVocabulary
     {
         [OperationContract]

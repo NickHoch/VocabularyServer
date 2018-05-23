@@ -10,6 +10,7 @@ using WCF.Mapping;
 
 namespace WCF
 {
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public class Vocabulary : IVocabulary
     {
         private DataBaseBLL _bll = new DataBaseBLL();
@@ -44,7 +45,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public bool AddUser(CredentialDC credentialDC)
