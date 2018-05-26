@@ -22,7 +22,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public bool IsDictionaryNameExists(string dictionaryName, int userId)
@@ -33,7 +33,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public int? GetUserIdByCredential(CredentialDC credentialDC)
@@ -57,7 +57,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public bool AddWord(WordDC wordDC, int dictionaryId)
@@ -69,7 +69,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public bool DeleteWord(int wordId)
@@ -80,7 +80,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public void UpdateWord(WordDC wordDC)
@@ -92,7 +92,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public ICollection<WordDC> GetWords(int dictionaryId)
@@ -106,7 +106,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public ICollection<WordDC> GetNotLearnedWords(int quantityWords, int dictionaryId)
@@ -120,7 +120,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public void SetToWordsStatusAsLearned(int quantityWords, int dictionaryId)
@@ -131,7 +131,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public void SetToWordsStatusAsUnlearned(int dictionaryId)
@@ -142,7 +142,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public void ChangeImage(int wordId, byte[] newImage)
@@ -153,7 +153,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public void ChangeSound(int wordId, byte[] newSound)
@@ -164,7 +164,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public bool AddDictionary(DictionaryExtnDC dictionaryDC, int userId)
@@ -176,7 +176,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public void UpdateDictionary(int dictionaryId, string newDictionaryName)
@@ -187,7 +187,7 @@ namespace WCF
             }
             catch(Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public bool DeleteDictionary(int dictionaryId)
@@ -198,7 +198,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
         public ICollection<DictionaryDC> GetDictionariesBaseInfo(int userId)
@@ -212,7 +212,7 @@ namespace WCF
             }
             catch (Exception ex)
             {
-                throw new FaultException(ex.Message);
+                throw new FaultException(ex.ToString());
             }
         }
     }
