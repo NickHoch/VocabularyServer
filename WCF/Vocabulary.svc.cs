@@ -48,11 +48,11 @@ namespace WCF
                 throw new FaultException(ex.ToString());
             }
         }
-        public bool AddUser(CredentialDC credentialDC)
+        public bool AddUser(CredentialExtnDC credentialDC)
         {
             try
             {
-                var credentialDTO = MappingCredential.MappingDCtoDTO(credentialDC);
+                var credentialDTO = MappingCredentialExtn.MappingDCtoDTO(credentialDC);
                 return _bll.AddUser(credentialDTO);
             }
             catch (Exception ex)

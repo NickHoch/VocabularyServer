@@ -18,7 +18,7 @@ namespace WCF
         [OperationContract]
         int? GetUserIdByCredential(CredentialDC credentialDC);
         [OperationContract]
-        bool AddUser(CredentialDC credentialDC);
+        bool AddUser(CredentialExtnDC credentialDC);
         [OperationContract]
         bool AddWord(WordDC wordDC, int dictionaryId);
         [OperationContract]

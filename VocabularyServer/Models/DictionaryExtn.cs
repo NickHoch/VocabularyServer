@@ -12,7 +12,7 @@ namespace DAL.Models
     public class DictionaryExtn : Dictionary
     {
         [Required]
-        public virtual Credential Credential { get; set; }
+        public virtual CredentialExtn Credential { get; set; }
         [XmlIgnoreAttribute]
         public virtual ICollection<Word> Words { get; set; }
         public DictionaryExtn() { }

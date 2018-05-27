@@ -7,21 +7,19 @@ using System.ServiceModel;
 using System.Xml;
 using System.Xml.Serialization;
 using DAL.Models;
-using DAL.Utils;
 
 namespace DAL
 {
-    internal class CustomInitializer<T> : DropCreateDatabaseIfModelChanges<VocabularyModel>
+    internal class CustomInitializer<T> : DropCreateDatabaseAlways<VocabularyModel>
     {
         protected override void Seed(VocabularyModel _ctx)
         {
-
-            string path = Helper.GetPathToBaseDirectory();
+            string path = Path.GetTempPath();
             #region
-            Credential cred1 = new Credential
+            CredentialExtn cred1 = new CredentialExtn
             {
-                Email = "nhy66@gmail.com",
-                Password = "5984ljkfh"
+                Email = "kolya.goch@gmail.com",
+                Password = "kolyagoch1234"
             };
             DictionaryExtn dict1 = new DictionaryExtn
             {
@@ -131,16 +129,16 @@ namespace DAL
                     IsLearnedWord = false,
                 }
             };
-            //var serializer = new DataContractSerializer(typeof(Word[]),
-            //    null,
-            //    0x7FFF,
-            //    false,
-            //    true,
-            //    null);
-            //using (FileStream fs = new FileStream($@"{path}\words.xml", FileMode.OpenOrCreate))
-            //{
-            //    serializer.WriteObject(fs, words);
-            //}
+            var serializer = new DataContractSerializer(typeof(Word[]),
+                null,
+                0x7FFF,
+                false,
+                true,
+                null);
+            using (FileStream fs = new FileStream($@"{path}\words.xml", FileMode.OpenOrCreate))
+            {
+                serializer.WriteObject(fs, words);
+            }
             #endregion
             //Word[] words = null;
             //var serializer = new DataContractSerializer(typeof(Word[]), null,

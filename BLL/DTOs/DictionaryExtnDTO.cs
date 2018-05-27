@@ -8,7 +8,7 @@ namespace BLL.DTOs
 {
     public class DictionaryExtnDTO : DictionaryDTO
     {
-        public CredentialDTO Credential { get; set; }
+        public CredentialExtnDTO Credential { get; set; }
         public List<WordDTO> Words { get; set; }
     }
 }

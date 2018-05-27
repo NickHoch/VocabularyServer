@@ -81,11 +81,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DCs\CredentialDC.cs" />
+    <Compile Include="DCs\CredentialExtnDC.cs" />
     <Compile Include="DCs\DictionaryDC.cs" />
     <Compile Include="DCs\DictionaryExtnDC.cs" />
     <Compile Include="DCs\WordDC.cs" />
     <Compile Include="IVocabulary.cs" />
     <Compile Include="Mapping\MappingCredential.cs" />
+    <Compile Include="Mapping\MappingCredentialExtn.cs" />
     <Compile Include="Mapping\MappingDictionary.cs" />
     <Compile Include="Mapping\MappingDictionaryExtn.cs" />
     <Compile Include="Mapping\MappingWord.cs" />

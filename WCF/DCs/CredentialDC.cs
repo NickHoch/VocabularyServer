@@ -13,7 +13,5 @@ namespace WCF.DCs
         public string Email { get; set; }
         [DataMember]
         public string Password { get; set; }
-        [DataMember]
-        public ICollection<DictionaryExtnDC> Dictionaries { get; set; }
     }
 }

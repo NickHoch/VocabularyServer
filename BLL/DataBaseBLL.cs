@@ -26,10 +26,10 @@ namespace BLL
             var credential = MappingCredential.MappingDTOtoDM(credentialDTO);
             return _dal.GetUserIdByCredential(credential);
         }
-        public bool AddUser(CredentialDTO credentialDTO)
+        public bool AddUser(CredentialExtnDTO credentialDTO)
         {
             bool resAddUser = false;
-            var credential = MappingCredential.MappingDTOtoDM(credentialDTO);
+            var credential = MappingCredentialExtn.MappingDTOtoDM(credentialDTO);
             var resAddCred = _dal.AddCredential(credential);
             if(resAddCred)
             {

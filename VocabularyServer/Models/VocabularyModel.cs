@@ -10,7 +10,7 @@ namespace DAL
             Database.SetInitializer<VocabularyModel>(new CustomInitializer<VocabularyModel>());
         }
         public virtual DbSet<Word> Words { get; set; }
-        public virtual DbSet<Credential> Credentials { get; set; }
+        public virtual DbSet<CredentialExtn> Credentials { get; set; }
         public virtual DbSet<DictionaryExtn> Dictionaries { get; set; }
     }
 }

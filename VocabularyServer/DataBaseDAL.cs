@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using DAL.Models;
-using DAL.Utils;
 
 namespace DAL
 {
@@ -29,12 +28,12 @@ namespace DAL
             }
             return null;
         }
-        public Credential GetCredentialById(int userId)
+        public CredentialExtn GetCredentialById(int userId)
         {
             return _ctx.Credentials.Where(x => x.Id == userId)
                                    .SingleOrDefault();
         }
-        public bool AddCredential(Credential credential)
+        public bool AddCredential(CredentialExtn credential)
         {
             int countBefore = _ctx.Credentials.Count();
             _ctx.Credentials.Add(credential);
@@ -155,7 +154,7 @@ namespace DAL
         }
         public bool StartInitializeDictionary(DictionaryExtn dictionary)
         {
-            string path = Helper.GetPathToBaseDirectory();
+            string path = Path.GetTempPath();
             int countBefore = _ctx.Words.Count();
             _ctx.Words.AddRange(new List<Word>
             {
